@@ -16,8 +16,9 @@ int main(int argc, const char **argv) {
         cerr << "Error loading image"sv << endl;
         return 2;
     }
-    img_lib::NegateInplace(image);
-    if (!img_lib::SavePPM(argv[2], image)) {
+    img_lib::Image result(image.GetWidth(), image.GetHeight(), img_lib::Color::Black());
+    img_lib::Sobel(image, result);
+    if (!img_lib::SavePPM(argv[2], result)) {
         cerr << "Error saving image"sv << endl;
         return 3;
     }
