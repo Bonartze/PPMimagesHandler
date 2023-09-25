@@ -28,6 +28,12 @@ namespace img_lib {
         return true;
     }
 
+    void NegateInplace(img_lib::Image &image) {
+        for (int y = 0; y < image.GetHeight(); y++)
+            for (int x = 0; x < image.GetWidth(); x++)
+                image.GetPixel(x, y).r = static_cast<std::byte>(255 - static_cast<char> (image.GetPixel(x, y).r));
+    }
+
     Image LoadPPM(const Path &file) {
         ifstream ifs(file, ios::binary);
         std::string sign;
